@@ -3,9 +3,6 @@ import asyncio
 
 
 class CamadaEnlaceLinux:
-    # O Linux desabilita a geração de checksums na interface de loopback. A única forma de ligá-la seria
-    # fazendo um patch no kernel. Portanto, desligamos a checagem de checksum quando usamos camadas de
-    # rede e/ou de enlace do Linux.
     ignore_checksum = True
 
     def __init__(self):
@@ -15,7 +12,7 @@ class CamadaEnlaceLinux:
         self.callback = None
 
     def __raw_recv(self):
-        datagrama = self.fd.recv(12000)  # número suficientemente grande para a maioria das camadas de enlace
+        datagrama = self.fd.recv(12000) 
         if self.callback:
             self.callback(datagrama)
 
